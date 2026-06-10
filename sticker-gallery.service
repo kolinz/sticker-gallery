@@ -1,0 +1,23 @@
+# /etc/systemd/system/sticker-gallery.service
+#
+# セットアップ手順:
+#   sudo cp sticker-gallery.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable sticker-gallery
+#   sudo systemctl start sticker-gallery
+
+[Unit]
+Description=Skill Stamp Gallery
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/opt/sticker-gallery
+ExecStart=/usr/bin/npm start
+Restart=on-failure
+RestartSec=5
+EnvironmentFile=/opt/sticker-gallery/.env
+
+[Install]
+WantedBy=multi-user.target

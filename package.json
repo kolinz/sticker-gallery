@@ -1,0 +1,40 @@
+{
+  "name": "sticker-gallery",
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently \"nodemon server.js\" \"vite\"",
+    "build": "vite build",
+    "start": "node server.js",
+    "migrate": "node db/migrate.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.x",
+    "express": "^4.x",
+    "express-rate-limit": "^7.x",
+    "helmet": "^8.x",
+    "@fastify/busboy": "^3.x"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/react": "^18.x",
+    "@types/react-dom": "^18.x",
+    "@vitejs/plugin-react": "^4.x",
+    "autoprefixer": "^10.x",
+    "class-variance-authority": "^0.7.x",
+    "clsx": "^2.x",
+    "concurrently": "^8.x",
+    "lucide-react": "^0.x",
+    "nodemon": "^3.x",
+    "postcss": "^8.x",
+    "react": "^18.x",
+    "react-dom": "^18.x",
+    "tailwind-merge": "^2.x",
+    "tailwindcss": "^3.4.x",
+    "typescript": "^5.x",
+    "vite": "^5.x"
+  }
+}
