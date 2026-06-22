@@ -36,14 +36,25 @@ cp .env.example .env
 vi .env
 # JWT_SECRET=<32文字以上のランダム文字列>
 # INITIAL_ADMIN_PASSWORD=<強いパスワード>
+# APP_ENV=production   ← 本番環境では必ず production に変更する（SPA フォールバック有効化）
 
 # 4. 依存パッケージをインストール
 npm install
 
-# 5. フロントエンドをビルド（production / staging）
+# 5. shadcn/ui の初期化（初回のみ）
+npx shadcn@latest init
+# 対話形式で以下を選択:
+#   Style: Default
+#   Base color: Slate
+#   CSS variables: Yes
+
+# 6. shadcn/ui コンポーネントの追加（初回のみ）
+npx shadcn@latest add button card dialog badge input label select textarea checkbox alert scroll-area
+
+# 7. フロントエンドをビルド（production / staging）
 npm run build
 
-# 6. データベースの初期化とシードデータ投入
+# 8. データベースの初期化とシードデータ投入
 node db/migrate.js
 # ✅ 001_schema 適用完了
 # ✅ 002_seed 適用完了
@@ -65,9 +76,12 @@ npm run dev
 ### 本番環境（直接起動）
 
 ```bash
-npm start
-# http://localhost:3000 で起動（Nginx と組み合わせて使用）
+# .env の APP_ENV を production に変更してからビルド・起動する
+npm run build   # client/dist/ を生成
+npm start       # http://localhost:3000 で起動（Nginx と組み合わせて使用）
 ```
+
+> **注意**：`APP_ENV=development` のままでは SPA フォールバックが無効になり、`http://localhost:3000` にアクセスしても CSS・JS が正しく配信されません。本番起動時は必ず `APP_ENV=production` に設定してください。
 
 ### 本番環境（systemd）
 
