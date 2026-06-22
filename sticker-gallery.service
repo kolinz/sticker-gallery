@@ -1,10 +1,34 @@
 # /etc/systemd/system/sticker-gallery.service
 #
-# セットアップ手順:
-#   sudo cp sticker-gallery.service /etc/systemd/system/
-#   sudo systemctl daemon-reload
-#   sudo systemctl enable sticker-gallery
-#   sudo systemctl start sticker-gallery
+# ⚠️ このファイルをそのままコピーしないこと。
+# 以下の手順で実際の環境に合わせて書き換えてから使用すること。
+#
+# 【設定手順】
+#
+# 1. アプリケーションの配置パスを確認する
+#    pwd   # sticker-gallery ディレクトリで実行
+#    例: /home/ubuntu/sticker-gallery
+#
+# 2. Node.js / npm のパスを確認する（nvm 環境では /usr/bin/ とは異なる）
+#    which node
+#    例: /home/ubuntu/.nvm/versions/node/v24.14.1/bin/node
+#    which npm
+#    例: /home/ubuntu/.nvm/versions/node/v24.14.1/bin/npm
+#
+# 3. 実行ユーザーを確認する
+#    whoami
+#    例: ubuntu
+#
+# 4. 下記の3箇所を実際の値に書き換える
+#    - User=
+#    - WorkingDirectory=
+#    - ExecStart=
+#
+# 5. サービスを登録・起動する
+#    sudo cp sticker-gallery.service /etc/systemd/system/
+#    sudo systemctl daemon-reload
+#    sudo systemctl enable sticker-gallery
+#    sudo systemctl start sticker-gallery
 
 [Unit]
 Description=Skill Stamp Gallery
@@ -12,12 +36,12 @@ After=network.target
 
 [Service]
 Type=simple
-User=www-data
-WorkingDirectory=/opt/sticker-gallery
-ExecStart=/usr/bin/npm start
+User=★実行ユーザー名に変更（例: ubuntu）
+WorkingDirectory=★アプリの絶対パスに変更（例: /home/ubuntu/sticker-gallery）
+ExecStart=★npmの絶対パスに変更（例: /home/ubuntu/.nvm/versions/node/v24.14.1/bin/npm） start
 Restart=on-failure
 RestartSec=5
-EnvironmentFile=/opt/sticker-gallery/.env
+EnvironmentFile=★アプリの絶対パスに変更（例: /home/ubuntu/sticker-gallery）/.env
 
 [Install]
 WantedBy=multi-user.target
