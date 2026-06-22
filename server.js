@@ -82,6 +82,7 @@ app.use('/api',            uploadRoutes);   // POST /api/upload / DELETE /api/im
 // ── 6. 静的ファイル配信（アップロード画像）───────────────
 
 app.use('/uploads', express.static(UPLOAD_DIR));
+app.use(express.static(resolve('./client/dist')));
 
 // ── 7. SPA フォールバック（production / staging のみ）────
 
