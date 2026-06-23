@@ -30,7 +30,7 @@ git clone <repository-url> sticker-gallery
 cd sticker-gallery
 
 # 2. 環境変数ファイルを作成
-cp .env.example .env
+cp env.example .env
 
 # 3. .env を編集（最低限 JWT_SECRET と管理者パスワードを変更する）
 vi .env
