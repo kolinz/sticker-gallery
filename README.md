@@ -43,11 +43,11 @@ npm install
 
 # 5. shadcn/ui の初期化（初回のみ）
 npx shadcn@latest init
-# 対話形式で以下を選択:
+# components.json が既存の場合は上書き不要（N を選択）<< 基本的にはこちら
+# 上記以外では、対話形式で以下を選択:
 #   Style: Default
 #   Base color: Slate
 #   CSS variables: Yes
-# ※ components.json が既存の場合は上書き不要（N を選択）
 
 # 6. shadcn/ui コンポーネントの追加（初回のみ）
 npx shadcn@latest add button card dialog badge input label select textarea checkbox alert scroll-area
@@ -78,7 +78,6 @@ npm run dev
 
 ```bash
 # .env の APP_ENV を production に変更してからビルド・起動する
-npm run build   # client/dist/ を生成
 npm start       # http://localhost:3000 で起動（Nginx と組み合わせて使用）
 ```
 
